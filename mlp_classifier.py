@@ -30,7 +30,7 @@ def preprocess_data(df):
     return X_scaled, y
 
 def main():
-    df = load_data("data.csv")
+    df = load_data("Cancer_Data.csv")
     X, y = preprocess_data(df)
     
     X_train, X_test, y_train, y_test = train_test_split(

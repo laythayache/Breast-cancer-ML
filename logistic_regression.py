@@ -35,7 +35,7 @@ def preprocess_data(df):
 
 def main():
     # Load data from CSV
-    df = load_data("data.csv")
+    df = load_data("Cancer_Data.csv")
     X, y = preprocess_data(df)
     
     # Split into train/test sets

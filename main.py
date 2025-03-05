@@ -1,25 +1,3 @@
-#!/usr/bin/env python
-"""
-main.py
-
-This script loads the Breast Cancer Wisconsin (Diagnostic) dataset (data.csv),
-preprocesses the data, and then trains and evaluates seven different classification models:
-1. Logistic Regression
-2. Random Forest
-3. Support Vector Machine (SVM)
-4. K-Nearest Neighbors (KNN)
-5. Gaussian Naive Bayes
-6. Multi-Layer Perceptron (MLP)
-7. Gradient Boosting
-
-For each model, the script creates a PNG image that displays:
-    - A heatmap of the confusion matrix.
-    - A text box showing the accuracy and a classification report.
-
-After running all models, the script creates a bar chart comparing their accuracies
-and saves it as "model_comparison.png".
-"""
-
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -41,16 +19,6 @@ from sklearn.neural_network import MLPClassifier
 RANDOM_STATE = 42
 
 def load_and_preprocess(filepath):
-    """
-    Load the CSV file and preprocess the data.
-    - Drops the 'id' column.
-    - Encodes 'diagnosis' (M -> 1, B -> 0).
-    - Scales the features.
-    
-    Returns:
-        X_scaled: Scaled features (numpy array)
-        y: Target vector (pandas Series)
-    """
     df = pd.read_csv(filepath)
     # Drop the non-predictive 'id' column
     df = df.drop(columns=['id'])
@@ -65,19 +33,6 @@ def load_and_preprocess(filepath):
     return X_scaled, y
 
 def evaluate_and_save(model, model_name, X_train, X_test, y_train, y_test):
-    """
-    Train the given model, evaluate it, and save a figure that shows:
-        - A confusion matrix heatmap.
-        - A text box with accuracy and classification report.
-    
-    Args:
-        model: The ML model instance.
-        model_name: A string name for the model.
-        X_train, X_test, y_train, y_test: Training and testing data.
-        
-    Returns:
-        accuracy (float): Accuracy score on the test set.
-    """
     # Train model
     model.fit(X_train, y_train)
     # Predict test set
@@ -116,7 +71,7 @@ def evaluate_and_save(model, model_name, X_train, X_test, y_train, y_test):
 
 def main():
     # Load and preprocess the data from data.csv
-    X, y = load_and_preprocess("data.csv")
+    X, y = load_and_preprocess("Cancer_Data.csv")
     
     # Split data (80% training, 20% testing)
     X_train, X_test, y_train, y_test = train_test_split(
